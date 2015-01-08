@@ -26,17 +26,15 @@
         <h1>
 <script>
 today = new Date();
-monday = new Date(today);
-/* Find monday. */
-if (!today.is().monday()) {
-    monday = monday.last().monday();
+/* First of month. */
+first = new Date(today.clone().setDate(1));
+/* Start of queso is 2nd monday. */
+if (first.is().monday()) {
+    start_of_queso = first.moveToDayOfWeek(1);
+} else {
+    start_of_queso = first.moveToDayOfWeek(1).moveToDayOfWeek(1);
 }
-/* Find last month's last monday. */
-while (monday.getMonth() == today.getMonth()) {
-    monday.last().monday();
-} 
-/* Find 2nd monday of this month. */
-start_of_queso = new Date(monday).next().monday().next().monday();
+/* Ends on sunday. */
 end_of_queso = new Date(start_of_queso).next().sunday();
 
 queso_week = false;
