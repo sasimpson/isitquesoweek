@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Is It Queso Week?</title>
+    <style>
+    body {
+		font-family: Helvetica, Arial, Verdana; 
+		background: #ccc;
+    }
+    h1 {
+        /*left: 0;*/
+        line-height: 200px;
+        margin: auto;
+        margin-top: -100px;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        font-size: 48pt;
+    }
+    </style>
+    <script type="text/javascript" src="date.js"></script>
+</head>
+<body>
+    <div style="width: 100%; text-align: center;">
+        <h1>
+<script>
+today = new Date();
+/* First of month. */
+first = new Date(today.clone().setDate(1));
+/* Start of queso is 2nd monday. */
+if (first.is().monday()) {
+    start_of_queso = first.moveToDayOfWeek(1);
+} else {
+    start_of_queso = first.moveToDayOfWeek(1).moveToDayOfWeek(1);
+}
+/* Ends on sunday. */
+end_of_queso = new Date(start_of_queso).next().sunday();
+
+queso_week = false;
+if (today >= start_of_queso && today <= end_of_queso) {
+    queso_week = true;
+}
+
+if (queso_week) {
+    document.body.style.background = 'goldenrod';
+}
+
+document.write(queso_week ? 'Yep!' : 'Nope');
+
+</script>
+        </h1>
+    </div>
+</body>
+</html>
